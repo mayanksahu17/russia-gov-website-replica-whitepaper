@@ -14,7 +14,7 @@ export default function Component() {
         <div className="max-w-6xl mx-auto flex items-center gap-4">
           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
             <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xs">🦅</span>
+                <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png"/>
             </div>
           </div>
           <div className="flex items-center gap-4">
