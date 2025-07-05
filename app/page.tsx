@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Home, FileText } from "lucide-react"
+import { useState } from "react"
 
 export default function Component() {
   const [code, setCode] = useState("")
@@ -80,8 +81,19 @@ export default function Component() {
                   value={code}
                   onChange={(e) => setCode(e.target.value)}
                   placeholder="Enter INN, OGRN or OGRNIP"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  placeholder="Enter INN, OGRN or OGRNIP"
                   className="w-full pr-8"
                 />
+                {code && (
+                  <button
+                    onClick={() => setCode("")}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    ×
+                  </button>
+                )}
                 {code && (
                   <button
                     onClick={() => setCode("")}
@@ -123,6 +135,12 @@ export default function Component() {
 
             {/* Find Button */}
             <div>
+              <Button
+                onClick={checkCertificate}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
+              >
+                FIND
+              </Button>
               <Button
                 onClick={checkCertificate}
                 className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
