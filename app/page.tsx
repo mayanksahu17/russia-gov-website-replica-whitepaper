@@ -1,3 +1,6 @@
+"use client"
+
+import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -5,16 +8,31 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Home, FileText } from "lucide-react"
 
 export default function Component() {
+  const [code, setCode] = useState("")
+  const [certificateFound, setCertificateFound] = useState(false)
+  const [checked, setChecked] = useState(false)
+
+  const checkCertificate = async () => {
+    setChecked(false)
+    try {
+      const res = await fetch(`/whitepaper/${code}.pdf`, { method: "HEAD" })
+      setCertificateFound(res.ok)
+      setChecked(true)
+    } catch {
+      setCertificateFound(false)
+      setChecked(true)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
-     
 
       {/* Header Section */}
       <div className="bg-gradient-to-r from-cyan-400 to-blue-500 px-4 py-8">
         <div className="max-w-6xl mx-auto flex items-center gap-4">
-          <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-            <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
-                <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png"/>
+           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
+              <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png" />
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -59,12 +77,19 @@ export default function Component() {
               </label>
               <div className="relative">
                 <Input
-                  placeholder="Indicate INN - Russian Tax ID or OGRN - Primary State Registration Number (OGRNIP - Primary State Registration Number of Individual Entrepreneur)"
+                  value={code}
+                  onChange={(e) => setCode(e.target.value)}
+                  placeholder="Enter INN, OGRN or OGRNIP"
                   className="w-full pr-8"
                 />
-                <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  ×
-                </button>
+                {code && (
+                  <button
+                    onClick={() => setCode("")}
+                    className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                  >
+                    ×
+                  </button>
+                )}
               </div>
             </div>
 
@@ -98,8 +123,32 @@ export default function Component() {
 
             {/* Find Button */}
             <div>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2">FIND</Button>
+              <Button
+                onClick={checkCertificate}
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-2"
+              >
+                FIND
+              </Button>
             </div>
+
+            {/* Certificate Result */}
+            {checked && certificateFound && (
+              <div className="text-center mt-4">
+                <a
+                  href={`/whitepaper/${code}.pdf`}
+                  download
+                  className="inline-block bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition"
+                >
+                  📄 Download Certificate for "{code}"
+                </a>
+              </div>
+            )}
+
+            {checked && !certificateFound && (
+              <p className="mt-4 text-sm text-red-600 text-center">
+                ❌ No certificate found for code: <strong>{code}</strong>
+              </p>
+            )}
           </div>
         </div>
       </div>
@@ -109,9 +158,9 @@ export default function Component() {
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">🦅</span>
+             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
+                  <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png" />
                 </div>
               </div>
               <div className="space-y-1">
