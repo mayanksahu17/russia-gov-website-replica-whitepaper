@@ -31,7 +31,7 @@ export default function Component() {
       <div className="bg-gradient-to-r from-cyan-400 to-blue-500 px-4 py-8">
         <div className="max-w-6xl mx-auto flex items-center gap-4">
           <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-            <div className="w-12 h-12 bg-red-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
               <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png" />
             </div>
           </div>
@@ -158,9 +158,9 @@ export default function Component() {
         <div className="max-w-6xl mx-auto px-4 py-8">
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-4">
-              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center">
-                  <span className="text-white font-bold text-xs">🦅</span>
+             <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                <div className="w-6 h-6 bg-red-600 rounded-full flex items-center justify-center">
+                  <img src="https://res.cloudinary.com/dwyyrm9xw/image/upload/v1751279953/Screenshot_from_2025-06-30_16-08-29_ikocbz.png" />
                 </div>
               </div>
               <div className="space-y-1">
