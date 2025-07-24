@@ -3,8 +3,8 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'russia Government Whitepaper',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  description: 'russia Government',
+  generator: 'russia Government',
 }
 
 export default function RootLayout({
